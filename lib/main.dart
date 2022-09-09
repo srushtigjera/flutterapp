@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:practice_demo_cwic/HomePage.dart';
-import 'package:practice_demo_cwic/Splash/slash_screen.dart';
-import 'package:practice_demo_cwic/Widgets/cutome_btn.dart';
-import 'package:practice_demo_cwic/login_screen.dart';
+import 'package:practice_demo_cwic/Login/login_home_screen.dart';
+import 'package:practice_demo_cwic/Login/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: LoginHomeScreen(),
     );
   }
 }
