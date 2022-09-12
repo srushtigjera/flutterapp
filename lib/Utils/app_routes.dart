@@ -24,15 +24,15 @@ class AppRoutes{
  }
 
  void nextScreenCloseOther(context,page){
-   Navigator.pushAndRemoveUntil(context, page, (route) => false);
+   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => page), (route) => false);
  }
 
  void nextScreenPlaceName(context ,page){
-   Navigator.pushReplacementNamed(context, page);
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => page));
  }
 
  void nextAndRemoveUtils(context , page){
-   Navigator.pushAndRemoveUntil(context, page, (route) => false);
+   Navigator.pushAndRemoveUntil(context, new MaterialPageRoute(builder: (context) => page), (route) => false);
  }
 
  void nextScreenCallback (context, page, Function(String result) handler) async {

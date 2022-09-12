@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
-import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
-import 'package:practice_demo_cwic/Widgets/cutome_btn.dart';
+import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
+import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,38 +17,24 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Container(
-                        color: AppColors.greyColor.withOpacity(0.2),
-                        width: 44,
-                        height: 44,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Image.asset(AppImages.backArrow,),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.17,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      height: 35,
-                      child: Image.asset(AppImages.logo,color: AppColors.primary,),
-                    ),
+                  CustomBackButton(
+                    texts: "",
+                    onPress: () {
+                      AppRoutes()
+                          .nextScreenCloseOther(context, LoginHomeScreen());
+                    },
+                    applogo: true,
+                  )
                   ],
                 ),
-
                 SizedBox(height: 35,),
-
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2.8,
                   height: 50,
@@ -56,76 +43,83 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 SizedBox(height: 20,),
 
-                Container(
-          decoration: BoxDecoration(
-            color: AppColors.greyColor.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: TextFormField(
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-              hintText: "Email",
-              border: InputBorder.none,
-            )),
-        ),
-                SizedBox(height: 15,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: TextFormField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
+                              hintText: "Email",
+                              border: InputBorder.none,
+                            )),
+                      ),
+                      SizedBox(height: 15,),
 
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.greyColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(14),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.greyColor.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: TextFormField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
+                              hintText: "Password",
+                              border: InputBorder.none,
+                            )),
+                      ),
+                      SizedBox(height: 35,),
+                      SizedBox(
+                        height: 55,
+                        child: CustomButton(
+                            height: 55,
+                            buttonText: 'Login',
+                            primary: AppColors.primary,
+                            txtColor: AppColors.white,
+                            buttonBorder: AppColors.primary,
+                            onPressed: (){
+                              setState(() {
+                                AppRoutes().nextScreen(context, LoginScreen());
+                              });
+                            }),
+                      ),
+
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            child:Text("Forgot Password?",style: TextStyle(fontSize: 14,color: AppColors.primary),),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 120,
+                      ),
+                      SizedBox(
+                        height: 55,
+                        child: CustomButton(
+                            height: 55,
+                            buttonText: 'No Account Yet?Sign Up',
+                            primary: AppColors.white,
+                            txtColor: AppColors.blackColor,
+                            buttonBorder: AppColors.greyBorder.withOpacity(0.2),
+                            onPressed: (){
+                              setState(() {
+                                // AppRoutes().nextScreen(context, LoginScreen());
+                              });
+                            }),
+                      ),
+                    ],
                   ),
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                        hintText: "Password",
-                        border: InputBorder.none,
-                      )),
-                ),
-                SizedBox(height: 35,),
-                SizedBox(
-                  height: 55,
-                  child: CustomeButton(
-                      height: 55,
-                      buttonText: 'Login',
-                      primary: AppColors.primary,
-                      txtColor: AppColors.white,
-                      buttonBorder: AppColors.primary,
-                      onPressed: (){
-                        setState(() {
-                          AppRoutes().nextScreen(context, LoginScreen());
-                        });
-                      }),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      child:Text("Forgot Password?",style: TextStyle(fontSize: 14,color: AppColors.primary),),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 120,
-                ),
-                SizedBox(
-                  height: 55,
-                  child: CustomeButton(
-                      height: 55,
-                      buttonText: 'No Account Yet?Sign Up',
-                      primary: AppColors.white,
-                      txtColor: AppColors.blackColor,
-                      buttonBorder: AppColors.greyBorder.withOpacity(0.2),
-                      onPressed: (){
-                        setState(() {
-                          // AppRoutes().nextScreen(context, LoginScreen());
-                        });
-                      }),
                 ),
               ],
             ),
