@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Login/login_screen.dart';
+import 'package:practice_demo_cwic/SignUp/additional_info_screen.dart';
+import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
+import 'package:practice_demo_cwic/forgotpassword/forgotpassword_screen.dart';
+
+import 'Widgets/heading_text.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +21,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightGreen,
       ),
-      home: LoginHomeScreen(),
+      home: AdditionalInfoScreen(),
     );
   }
 }

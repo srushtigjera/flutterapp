@@ -4,6 +4,7 @@ import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
+import 'package:practice_demo_cwic/forgotpassword/forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -97,7 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           SizedBox(
                             height: 50,
-                            child:Text("Forgot Password?",style: TextStyle(fontSize: 14,color: AppColors.primary),),
+                            child:GestureDetector(
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, ForgotPasswordScreen());
+                                },
+                                child: Text("Forgot Password?",style: TextStyle(fontSize: 14,color: AppColors.primary),)),
                           ),
                         ],
                       ),

@@ -9,9 +9,7 @@ class CustomBackButton extends StatefulWidget {
   bool applogo;
 
   CustomBackButton({Key? key, this.onPress, this.texts, this.applogo = false}) : super(key: key) {
-
   }
-
   @override
   _CustomBackButtonState createState() => _CustomBackButtonState();
 }
@@ -58,6 +56,5 @@ class _CustomBackButtonState extends State<CustomBackButton> {
           ],
         ),
       );
-
   }
 }
