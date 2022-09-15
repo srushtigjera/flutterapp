@@ -107,7 +107,7 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                               if (pickedDate != null) {
                                 print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
                                 String formattedDate =
-                                DateFormat('dd-MM-yyyy').format(pickedDate);
+                                DateFormat('dd-MMM-yyyy').format(pickedDate);
                                 print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                 setState(() {
                                   dateInput.text =

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Login/login_screen.dart';
+import 'package:practice_demo_cwic/Profile/profile_screen.dart';
 import 'package:practice_demo_cwic/SignUp/additional_info_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: AdditionalInfoScreen(),
+      home: ProfileScreen(),
     );
   }
 }

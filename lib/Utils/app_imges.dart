@@ -11,5 +11,6 @@ class AppImages{
   static const String facebook = "assets/image/facebook.png";
   static const String google = "assets/image/google.png";
   static const String apple = "assets/image/applelogo.png";
+  static const String moreNew = "assets/image/more_new.png";
 
 }
