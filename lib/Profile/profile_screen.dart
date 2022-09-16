@@ -1,7 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Notifications/notification_screen.dart';
+import 'package:practice_demo_cwic/changeEmail/change_email_screen.dart';
+import 'package:practice_demo_cwic/changepassword/change_password_screen.dart';
+import 'package:practice_demo_cwic/faq_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
+import 'package:practice_demo_cwic/Utils/app_routes.dart';
+import 'package:practice_demo_cwic/about_us_screen.dart';
+import 'package:practice_demo_cwic/brand_ambassadors_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -236,32 +243,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
                    )
                  ],
                ),
-
                Visibility(
                  visible: visibles,
                  child: ClipRRect(
                    borderRadius: BorderRadius.circular(10),
                    child: Container(
-                     color: AppColors.greyColor,
+                     color: AppColors.greyColorV2,
                        child: Padding(
                          padding: const EdgeInsets.only(left: 15,top: 20,bottom: 20,right: 50),
-                         child: Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Text( "About Us"),
-                             SizedBox(height: 8,),
-                             Text("Brand Ambassadors"),
-                             SizedBox(height: 8,),
-                             Text("FAQs"),
-                             SizedBox(height: 8,),
-                             Text("Notification Settings"),
-                             SizedBox(height: 8,),
-                             Text("Change Password"),
-                             SizedBox(height: 8,),
-                             Text("Change Email"),
-                             SizedBox(height: 8,),
-                             Text("Sign Out"),
-                           ],
+                         child: SingleChildScrollView(
+                           child: Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               GestureDetector(
+                                 onTap: (){
+                                   setState(() {
+                                    AppRoutes().nextScreen(context, AboutUs());
+                                    visibles = false;
+                                   });
+                                 },
+                                   child: Text( "About Us")),
+                               SizedBox(height: 8,),
+                               GestureDetector(
+                                   onTap: (){
+                                     AppRoutes().nextScreen(context, BrandAmbassadors());
+                                     visibles = false;
+                                   },
+                                   child: Text("Brand Ambassadors")),
+                               SizedBox(height: 8,),
+                               GestureDetector(
+                                   onTap: (){
+                                     AppRoutes().nextScreen(context, FAQs());
+                                     visibles = false;
+                                   },
+                                   child: Text("FAQs")),
+                               SizedBox(height: 8,),
+                          GestureDetector(
+                              onTap: (){
+                                AppRoutes().nextScreen(context, NotificationScreen());
+                                visibles = false;
+                              },
+                              child: Text("Notification Settings")),
+                               SizedBox(height: 8,),
+                               GestureDetector(
+                                   onTap: (){
+                                     AppRoutes().nextScreen(context, ChangePasswordScreen());
+                                     visibles = false;
+                                   },
+                                   child: Text("Change Password")),
+                               SizedBox(height: 8,),
+                               GestureDetector(
+                                   onTap: (){
+                                     AppRoutes().nextScreen(context, ChangeEmailScreen());
+                                     visibles = false;
+                                   },
+                                   child: Text("Change Email")),
+                               SizedBox(height: 8,),
+                               Text("Sign Out",style: TextStyle(color: Colors.red),),
+                             ],
+                           ),
                          ),
                        )),
                  ),
