@@ -12,5 +12,9 @@ class AppImages{
   static const String google = "assets/image/google.png";
   static const String apple = "assets/image/applelogo.png";
   static const String moreNew = "assets/image/more_new.png";
+  static const String msg = "assets/image/messages.png";
+  static const String arcv = "assets/image/archiveAdd.png";
+  static const String home = "assets/image/home.png";
+  static const String profiles = "assets/image/profile.png";
 
 }

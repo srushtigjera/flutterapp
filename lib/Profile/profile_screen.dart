@@ -10,6 +10,8 @@ import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/about_us_screen.dart';
 import 'package:practice_demo_cwic/brand_ambassadors_screen.dart';
 
+import 'editprofile_screen.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -65,7 +67,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          )
                        ],
                      ),
-
                    ),
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -98,7 +99,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: [
                          Text('Details',style: TextStyle(fontSize: 15),),
-                         Text('Edit profile details',style: TextStyle(color: AppColors.greyColor),),
+                         GestureDetector(
+                             onTap: (){
+                               AppRoutes().nextScreen(context, EditProfileScreen());
+                             },
+                             child: Text('Edit profile details',style: TextStyle(color: AppColors.greyColor),)),
                        ],),
                    ),
                    SizedBox(height: 15,),

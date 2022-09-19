@@ -15,15 +15,18 @@ class _HeadingTextState extends State<HeadingText> {
   Widget build(BuildContext context) {
     final sizeHeight = MediaQuery.of(context).size.height;
     return Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: sizeHeight * 0.05),
-            SizedBox(
-              child: Text(widget.title!,style: TextStyle(fontSize: 29,color: AppColors.primary),),
-            ),
-            SizedBox(height: sizeHeight * 0.05),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: sizeHeight * 0.05),
+              SizedBox(
+                child: Text(widget.title!,style: TextStyle(fontSize: 25,color: AppColors.primary),),
+              ),
+              SizedBox(height: sizeHeight * 0.05),
+            ],
+          ),
         ),
       );
   }
