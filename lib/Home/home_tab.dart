@@ -22,7 +22,6 @@ class _HomeTabState extends State<HomeTab> {
       _selectedIndex = index;
     });
   }
-
   static const List<Widget> _widgetOptions = <Widget>[
    HomeScreen(),
    FavouriteScreen(),
@@ -37,6 +36,8 @@ class _HomeTabState extends State<HomeTab> {
         child: _widgetOptions.elementAt(_selectedIndex),
     ),
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.home)),
@@ -58,10 +59,8 @@ class _HomeTabState extends State<HomeTab> {
           ],
          // type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
-
           showSelectedLabels: false,
           showUnselectedLabels: false,
-
           selectedItemColor: AppColors.primary,
           unselectedItemColor: AppColors.greyColor,
           iconSize: 25,

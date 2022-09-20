@@ -16,5 +16,10 @@ class AppImages{
   static const String arcv = "assets/image/archiveAdd.png";
   static const String home = "assets/image/home.png";
   static const String profiles = "assets/image/profile.png";
+  static const String cwick = "assets/image/cwickblackimage.png";
+  static const String filter = "assets/image/filter.png";
+  static const String mapPin = "assets/image/mapPin.png";
+  static const String notification = "assets/image/notification.png";
+  static const String homes = "assets/image/vincentplace.png";
 
 }
