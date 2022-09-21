@@ -21,5 +21,7 @@ class AppImages{
   static const String mapPin = "assets/image/mapPin.png";
   static const String notification = "assets/image/notification.png";
   static const String homes = "assets/image/vincentplace.png";
+  static const String more = "assets/image/more.png";
+  static const String walk = "assets/image/walk.png";
 
 }

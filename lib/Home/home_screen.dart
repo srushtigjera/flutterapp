@@ -88,30 +88,527 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   child: GridView(
                     shrinkWrap: true,
-                 //   physics: const NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisSpacing: 0,
-                        crossAxisSpacing: 10
+                        mainAxisSpacing: 6,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 01.0 )
                       ),
                     children: [
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes),
-                      Image.asset(AppImages.homes)
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:AssetImage(AppImages.homes)
+                                ),
+                              borderRadius: BorderRadius.circular(15)
+                            ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('By Location 📍',style: TextStyle(fontSize: 23,color: AppColors.primary),),
+                  ],
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Southampton',
+                              ),
+                            ],
+                          )),
+                    ),
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Bristol',
+                              ),
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Southampton',
+                              ),
+                            ],
+                          )),
+                    ),
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Bristol',
+                              ),
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Southampton',
+                              ),
+                            ],
+                          )),
+                    ),
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: Container(
+                          height: 43,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                              color:  AppColors.lightGreyColor,
+                              borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Bristol',
+                              ),
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Top 10 Trending 💯',style: TextStyle(fontSize: 23,color: AppColors.primary),),
+                  ],
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  child: GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 6,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 01.0 )
+                    ),
+                    children: [
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 162,
+                              width: 200,
+                              decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:AssetImage(AppImages.homes)
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Detail/detail_screen.dart';
 import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Login/login_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: HomeTab(),
+      home: DetailScreen(),
     );
   }
 }
