@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Detail/detail_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
+import 'package:practice_demo_cwic/Utils/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -100,16 +102,58 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image:AssetImage(AppImages.homes)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image:AssetImage(AppImages.homes)
+                                  ),
+                                borderRadius: BorderRadius.circular(15)
+                              ),
+                              ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
                                 ),
-                              borderRadius: BorderRadius.circular(15)
-                            ),
+                              ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -125,21 +169,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -155,21 +204,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -185,21 +239,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -215,21 +274,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -245,21 +309,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -429,16 +498,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -459,16 +534,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -484,21 +565,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -514,21 +600,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -544,21 +635,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),
@@ -574,21 +670,61 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text('154.0',style:TextStyle(fontSize: 18,),),
                           ],
                         ),
-                      ),
-                      Container(
+                      ),Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 162,
-                              width: 200,
-                              decoration:BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage(AppImages.homes)
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
                               ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
+                            ),
+                            SizedBox(height: 3,),
+                            Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                            SizedBox(height: 3,),
+                            Text('Southampton',style:TextStyle(fontSize: 14,),),
+                            SizedBox(height: 3,),
+                            Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                            SizedBox(height: 3,),
+                            Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                            SizedBox(height: 3,),
+                            Text('154.0',style:TextStyle(fontSize: 18,),),
+                          ],
+                        ),
+                      ),Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+
+                              child: Container(
+                                height: 162,
+                                width: 200,
+                                decoration:BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:AssetImage(AppImages.homes)
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
+                              ),
+                              onTap: (){
+                                AppRoutes().nextScreen(context, DetailScreen());
+                              },
                             ),
                             SizedBox(height: 3,),
                             Text('studio',style: TextStyle(color: AppColors.greyBorder),),

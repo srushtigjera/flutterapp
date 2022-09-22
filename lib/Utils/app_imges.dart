@@ -23,5 +23,8 @@ class AppImages{
   static const String homes = "assets/image/vincentplace.png";
   static const String more = "assets/image/more.png";
   static const String walk = "assets/image/walk.png";
-
+  static const String bednew = "assets/image/bed_new.png";
+  static const String elevator = "assets/image/elevator.png";
+  static const String squarefit = "assets/image/squarefit.png";
+  static const String tile = "assets/image/tile.png";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Detail/detail_screen.dart';
+import 'package:practice_demo_cwic/Home/home_screen.dart';
 import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Login/login_screen.dart';
@@ -9,6 +10,7 @@ import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/forgotpassword/forgotpassword_screen.dart';
 
+import 'Profile/estate_profile.dart';
 import 'Widgets/heading_text.dart';
 
 void main() {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: DetailScreen(),
+      home: HomeTab(),
     );
   }
 }
