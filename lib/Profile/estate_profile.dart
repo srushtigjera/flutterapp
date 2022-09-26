@@ -154,7 +154,6 @@ class _EstateProfileState extends State<EstateProfile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 GestureDetector(
-
                                   child: Container(
                                     height: 162,
                                     width: 200,
@@ -294,7 +293,6 @@ class _EstateProfileState extends State<EstateProfile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 GestureDetector(
-
                                   child: Container(
                                     height: 162,
                                     width: 200,

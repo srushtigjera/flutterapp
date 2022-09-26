@@ -101,7 +101,6 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1950),
-
                                   lastDate: DateTime(2400));
 
                               if (pickedDate != null) {
@@ -250,7 +249,6 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
       ),
     );
   }
-
    showCity() {
     return showDialog(
         context: context,
