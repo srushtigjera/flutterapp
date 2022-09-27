@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Detail/detail_screen.dart';
+import 'package:practice_demo_cwic/Explorer/explorer_screen.dart';
 import 'package:practice_demo_cwic/FilterScreen/filter_screen.dart';
 import 'package:practice_demo_cwic/Home/home_screen.dart';
 import 'package:practice_demo_cwic/Home/home_tab.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: FilterScreen(),
+      home: ExplorerScreen(),
     );
   }
 }

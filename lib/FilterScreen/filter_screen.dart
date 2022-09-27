@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/FilterScreen/filter_result.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
+import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
 
@@ -61,8 +63,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                   height: 55,
                                   color: AppColors.greyColor.withOpacity(0.2),
                                   child: TextFormField(
+                                    textAlign: TextAlign.center,
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(top: 20,left: MediaQuery.of(context).size.width * 0.08,bottom: 20),
+                                      contentPadding: EdgeInsets.only(top: 20,bottom: 20),
                                       hintText: 'Private Room',
                                       hintStyle: TextStyle(color: AppColors.blackColor,fontSize: 14),
                                       border: InputBorder.none,
@@ -79,8 +82,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                   height: 55,
                                   color: AppColors.greyColor.withOpacity(0.2),
                                   child: TextFormField(
+                                    textAlign: TextAlign.center,
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(top: 20,left: MediaQuery.of(context).size.width * 0.06,bottom: 20),
+                                      contentPadding: EdgeInsets.only(top: 20,bottom: 20),
                                       hintText: 'Private Ensuite',
                                       hintStyle: TextStyle(color: AppColors.blackColor,fontSize: 14),
                                       border: InputBorder.none,
@@ -101,8 +105,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                   height: 55,
                                   color: AppColors.greyColor.withOpacity(0.2),
                                   child: TextFormField(
+                                    textAlign: TextAlign.center,
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(top: 20,left: MediaQuery.of(context).size.width * 0.15,bottom: 20),
+                                      contentPadding: EdgeInsets.only(top: 20,bottom: 20),
                                       hintText: 'Studio',
                                       hintStyle: TextStyle(color: AppColors.blackColor,fontSize: 14),
                                       border: InputBorder.none,
@@ -119,8 +124,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                   height: 55,
                                   color: AppColors.greyColor.withOpacity(0.2),
                                   child: TextFormField(
+                                    textAlign: TextAlign.center,
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(top: 20,left:  MediaQuery.of(context).size.width * 0.1,bottom: 20),
+                                      contentPadding: EdgeInsets.only(top: 20,bottom: 20),
                                       hintText: 'Apartment',
                                       hintStyle: TextStyle(color: AppColors.blackColor,fontSize: 14),
                                       border: InputBorder.none,
@@ -218,7 +224,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       buttonBorder: AppColors.primary,
                       onPressed: (){
                         setState(() {
-                          // AppRoutes().nextScreen(context, LoginScreen());
+                           AppRoutes().nextScreen(context, FilterResult());
                         });
                       }),
                 ),

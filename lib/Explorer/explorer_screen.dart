@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Detail/detail_screen.dart';
 import 'package:practice_demo_cwic/SignUp/signup_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
+import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Utils/app_string.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
@@ -67,8 +69,271 @@ class _ExplorerScreenState extends State<ExplorerScreen> {
                     ],
                   ),
                 ),
+                SizedBox(height: 20,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    child: GridView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 6,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height * 1.05 )
+                      ),
+                      children: [
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
 
-                SizedBox(height:15,)
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+
+                                child: Container(
+                                  height: 162,
+                                  width: 200,
+                                  decoration:BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:AssetImage(AppImages.homes)
+                                      ),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                ),
+                                onTap: (){
+                                  AppRoutes().nextScreen(context, DetailScreen());
+                                },
+                              ),
+                              SizedBox(height: 3,),
+                              Text('studio',style: TextStyle(color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('Examle I - Platinum Studio',style:TextStyle(fontSize: 16,),),
+                              SizedBox(height: 3,),
+                              Text('Southampton',style:TextStyle(fontSize: 14,),),
+                              SizedBox(height: 3,),
+                              Text('Solent University',style:TextStyle(fontSize: 10,color: AppColors.greyColor),),
+                              SizedBox(height: 3,),
+                              Text('University of Soluthampton',style:TextStyle(fontSize: 10,color: AppColors.greyBorder),),
+                              SizedBox(height: 3,),
+                              Text('154.0',style:TextStyle(fontSize: 18,),),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+
               ],
             ),
           ),
