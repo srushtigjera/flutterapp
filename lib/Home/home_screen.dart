@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Detail/detail_screen.dart';
+import 'package:practice_demo_cwic/LocationWiseData/location_wise_data.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
@@ -279,7 +280,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
-
                               child: Container(
                                 height: 162,
                                 width: 200,
@@ -358,120 +358,150 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 20,),
                 Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Southampton',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Southampton',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(width: 10,),
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Bristol',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bristol',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 10,),
                 Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Southampton',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Southampton',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(width: 10,),
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Bristol',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bristol',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 10,),
                 Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Southampton',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Southampton',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(width: 10,),
-                    Expanded(
-                      child: Container(
-                          height: 43,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: BoxDecoration(
-                              color:  AppColors.lightGreyColor,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Bristol',
-                              ),
-                            ],
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        AppRoutes().nextScreen(context, LocationWiseData());
+                      },
+                      child: Expanded(
+                        child: Container(
+                            height: 43,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            decoration: BoxDecoration(
+                                color:  AppColors.lightGreyColor,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bristol',
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                   ],
                 ),
@@ -605,7 +635,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
-
                               child: Container(
                                 height: 162,
                                 width: 200,
