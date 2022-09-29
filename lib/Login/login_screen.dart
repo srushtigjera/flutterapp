@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Home/home_screen.dart';
+import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
+import 'package:practice_demo_cwic/SignUp/signup_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
 import 'package:practice_demo_cwic/forgotpassword/forgotpassword_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  bool loginData = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,8 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             txtColor: AppColors.white,
                             buttonBorder: AppColors.primary,
                             onPressed: (){
-                              setState(() {
-                                AppRoutes().nextScreen(context, LoginScreen());
+                              setState(() async {
+                                loginData = true;
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setBool("logindata", loginData);
+                                AppRoutes().nextScreen(context, HomeTab());
                               });
                             }),
                       ),
@@ -118,8 +127,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             txtColor: AppColors.blackColor,
                             buttonBorder: AppColors.greyBorder.withOpacity(0.2),
                             onPressed: (){
-                              setState(() {
-                                // AppRoutes().nextScreen(context, LoginScreen());
+                              setState(() async {
+                                loginData = false;
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setBool("logindata", loginData);
+                                AppRoutes().nextScreen(context, SignUpScreen());
                               });
                             }),
                       ),

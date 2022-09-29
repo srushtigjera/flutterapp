@@ -7,6 +7,7 @@ import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginHomeScreen extends StatefulWidget {
   const LoginHomeScreen({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class LoginHomeScreen extends StatefulWidget {
 }
 
 class _LoginHomeScreenState extends State<LoginHomeScreen> {
+
+  bool loginScreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +27,13 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 50,),
+              SizedBox(height: 45,),
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2.8,
                 height: 50,
                 child: Image.asset(AppImages.logo,color: AppColors.primary,),
               ),
-              SizedBox(height: 30,),
+              SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
@@ -70,7 +73,10 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> {
                       txtColor: AppColors.white,
                       buttonBorder: AppColors.primary,
                       onPressed: (){
-                        setState(() {
+                        setState(() async {
+                          loginScreen = false;
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setBool("logindata", loginScreen);
                           AppRoutes().nextScreen(context, LoginScreen());
                         });
                       }),
@@ -90,7 +96,10 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> {
                       txtColor: AppColors.blackColor,
                       buttonBorder: AppColors.greyBorder.withOpacity(0.2),
                       onPressed: (){
-                        setState(() {
+                        setState(() async {
+                          loginScreen = false;
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setBool("logindata", loginScreen);
                           AppRoutes().nextScreen(context, SignUpScreen());
                         });
                       }),
@@ -110,8 +119,11 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> {
                       txtColor: AppColors.blackColor,
                       buttonBorder: AppColors.greyColor,
                       onPressed: (){
-                        setState(() {
-                           AppRoutes().nextScreen(context, ExplorerScreen());
+                        setState(() async {
+                          loginScreen = false;
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setBool("logindata", loginScreen);
+                          AppRoutes().nextScreen(context, ExplorerScreen());
                         });
                       }),
                 ),

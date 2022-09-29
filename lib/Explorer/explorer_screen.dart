@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Detail/detail_screen.dart';
+import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/SignUp/signup_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
@@ -8,6 +9,7 @@ import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Utils/app_string.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ExplorerScreen extends StatefulWidget {
   const ExplorerScreen({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class ExplorerScreen extends StatefulWidget {
 }
 
 class _ExplorerScreenState extends State<ExplorerScreen> {
+  bool explorerScreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -347,7 +350,10 @@ class _ExplorerScreenState extends State<ExplorerScreen> {
                   txtColor: Colors.white,
                   buttonBorder:AppColors.primary,
                   primary: AppColors.primary,
-                  onPressed: () {
+                  onPressed: () async {
+                    explorerScreen = true;
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.setBool("logindata", explorerScreen);
                     AppRoutes().nextScreen(context, const SignUpScreen());
                   },),
               ),

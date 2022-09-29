@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Explorer/explorer_screen.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
+import 'package:practice_demo_cwic/SignUp/additional_info_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,6 +18,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool signUpScreen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,8 +127,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           txtColor: AppColors.white,
                           buttonBorder: AppColors.primary,
                           onPressed: (){
-                            setState(() {
-                              AppRoutes().nextScreen(context, SignUpScreen());
+                            setState(() async {
+                              signUpScreen = false;
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setBool("logindata", signUpScreen);
+                              AppRoutes().nextScreen(context, AdditionalInfoScreen());
                             });
                           }),
                     ),

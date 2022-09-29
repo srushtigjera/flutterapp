@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Notifications/notification_screen.dart';
 import 'package:practice_demo_cwic/changeEmail/change_email_screen.dart';
 import 'package:practice_demo_cwic/changepassword/change_password_screen.dart';
@@ -9,6 +10,7 @@ import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/about_us_screen.dart';
 import 'package:practice_demo_cwic/brand_ambassadors_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'editprofile_screen.dart';
 
@@ -21,6 +23,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
+  bool signOut = true;
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -304,7 +309,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                    },
                                    child: Text("Change Email")),
                                SizedBox(height: 8,),
-                               Text("Sign Out",style: TextStyle(color: Colors.red),),
+                               GestureDetector(
+                                   onTap: () async {
+                                     signOut = false;
+                                     SharedPreferences prefs = await SharedPreferences.getInstance();
+                                     prefs.setBool("logindata", signOut);
+                                     AppRoutes().nextAndRemoveUtils(context, LoginHomeScreen());
+                                    // AppRoutes().nextScreen(context, LoginHomeScreen());
+                                   },
+                                   child: Text("Sign Out",style: TextStyle(color: Colors.red),)),
                              ],
                            ),
                          ),

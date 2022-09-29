@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Models/currency_model.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
@@ -9,6 +10,7 @@ import 'package:practice_demo_cwic/Utils/list_data.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
 import 'package:practice_demo_cwic/Widgets/heading_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdditionalInfoScreen extends StatefulWidget {
   const AdditionalInfoScreen({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class AdditionalInfoScreen extends StatefulWidget {
 class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
 
   bool isParentOrGuardian = false;
+  bool homeScreen = false;
 
   var dateInput = TextEditingController();
   String? strDob, strLang, strUnivCollege, strCurrency = 'GBP (£)';
@@ -234,8 +237,11 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                   primary: AppColors.primary,
                   txtColor: Colors.white,
                   onPressed: () {
-                    setState(() {
-                    //  validateForm();
+                    setState(() async {
+                      homeScreen = true;
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setBool("logindata", homeScreen);
+                      AppRoutes().nextScreen(context, HomeTab());
                     });
                   },
                 ),
