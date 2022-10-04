@@ -22,6 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   bool loginData = false;
 
+
+
   void submit() {
     final isValid = formKey.currentState?.validate();
     if (isValid!) {
@@ -105,7 +107,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                                 hintText: "Password",
                                 border: InputBorder.none,
-                                errorStyle: TextStyle(color: AppColors.primary,fontSize: 16.0)
+                                errorStyle: TextStyle(color: AppColors.primary,fontSize: 16.0),
+                                /*suffixIcon: IconButton(
+                                    icon: Icon(Icons.password,),
+                                  onPressed: (){
+                                      setState(() {
+                                        passwordData = true;
+
+                                      });
+                                  },
+                                ),*/
                               ),
                             validator: (value) {
                               if (value!.isEmpty) {

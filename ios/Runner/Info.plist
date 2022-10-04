@@ -28,6 +28,42 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+
+
+
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Upload images for screen background</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Upload image from camera for screen background</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Post videos to profile</string>
+
+
+
+
+
+
+
+
+
+
+
+
+	<key>NSCameraUsageDescription</key>
+    	<string>The app requires the camera permission to capture profile picture </string>
+    	<key>NSLocationWhenInUseUsageDescription</key>
+    	<string>to get your current location</string>
+    	<key>NSMicrophoneUsageDescription</key>
+    	<string>The app requires the microphone permission to capture profile picture </string>
+    	<key>NSPhotoLibraryUsageDescription</key>
+    	<string>The app requires the photo library permission to select a profile picture</string>
+    	<key>UIBackgroundModes</key>
+    	<array>
+    		<string>fetch</string>
+    		<string>remote-notification</string>
+    	</array>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/SignUp/additional_info_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
+
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
@@ -20,6 +24,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool signUpScreen = false;
   var formKey = GlobalKey<FormState>();
   var password = TextEditingController();
+
+  File? imageFile;
+  String? fileName;
+  String? imageUrl;
 
   void submit() {
     final isValid = formKey.currentState?.validate();
@@ -62,7 +70,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             width: 90,
                             height: 90,
-                            child: Image.asset(AppImages.profilepic)),
+                            child: InkWell(
+                                onTap: (){
+                                  imagePickerDialog();
+                                },
+                                child: Image.asset(AppImages.profilepic)),),
                           Positioned(
                               bottom: 1,
                               right: 1,
@@ -247,5 +259,121 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+  Future pickImage(ImageSource imageSource) async {
+    final pickImage = ImagePicker();
+    var imagePicked = await pickImage.pickImage(
+        source: imageSource, maxHeight: 200, maxWidth: 200);
+    if (imagePicked != null) {
+      setState(() {
+       // print(imagePicked);
+        imageFile = File(imagePicked.path);
+        fileName = (imageFile!.path);
+        print('imageFile == ${imageFile}');
+        print('fileName == ${fileName}');
+      });
+    } else {
+      print('No image selected!');
+    }
+  }
+  imagePickerDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(14.0))),
+            contentPadding: const EdgeInsets.only(top: 10.0),
+            content: Container(
+              width: 300.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "Choose profile",
+                      style: TextStyle(fontSize: 16,color: AppColors.blackColor),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  Divider(
+                    color: Colors.grey.withOpacity(0.2),
+                    height: 1.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          pickImage(ImageSource.gallery);
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                      5.0) //                 <--- border radius here
+                              ),
+                              border: Border.all(
+                                  color: AppColors.primary.withOpacity(0.4))),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.photo_library,
+                              color: AppColors.blackColor.withOpacity(0.6),
+                            ),
+                            onPressed: () {
+
+
+
+
+                              pickImage(ImageSource.gallery);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          pickImage(ImageSource.camera);
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                      5.0) //                 <--- border radius here
+                              ),
+                              border: Border.all(
+                                  color: AppColors.primary.withOpacity(0.4))),
+                          child: IconButton(
+                            icon: Icon(Icons.camera_alt_rounded,
+                                color: AppColors.blackColor.withOpacity(0.6)),
+                            onPressed: () {
+
+                              pickImage(ImageSource.camera);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
