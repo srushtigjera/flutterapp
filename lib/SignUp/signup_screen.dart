@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:practice_demo_cwic/Dailog/custom_dialog.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/SignUp/additional_info_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
-
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
@@ -25,13 +25,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var formKey = GlobalKey<FormState>();
   var password = TextEditingController();
 
-  File? imageFile;
+  File? imageFile = null;
   String? fileName;
   String? imageUrl;
 
   void submit() {
     final isValid = formKey.currentState?.validate();
-    if (isValid!) {
+
+    if (imageFile == null) {
+      setState(() {
+        CustomDialog()
+            .show(context, "Error", "Please upload your profile picture");
+      });
+    } else if(isValid!){
       setState(() async {
         signUpScreen = false;
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,6 +45,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
         AppRoutes().nextScreen(context, AdditionalInfoScreen());
       });
     }
+    /*if (isValid!) {
+      setState(() async {
+        if (imageFile == null) {
+          CustomDialog()
+              .show(context, "Error", "Please upload your profile picture");
+        }else{
+          signUpScreen = false;
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool("logindata", signUpScreen);
+          AppRoutes().nextScreen(context, AdditionalInfoScreen());
+        }
+      });
+    }*/
     formKey.currentState?.save();
   }
 
@@ -74,7 +93,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 onTap: (){
                                   imagePickerDialog();
                                 },
-                                child: Image.asset(AppImages.profilepic)),),
+                                child: CircleAvatar(
+                                radius: 45,
+                                child: ClipOval(
+                                    child:
+                                    // Image.asset(AppImages.profileImage, height: 150, width: 150, fit: BoxFit.cover,),),
+                                    imageFile != null
+                                        ? Image.file(
+                                      imageFile!,
+                                      height: 120,
+                                      width: 120,
+                                      fit: BoxFit.cover,
+                                    )
+                                        : Image.asset(
+                                      AppImages.profilepic,
+                                      height: 120,
+                                      width: 120,
+                                      fit: BoxFit.cover,
+                                    ) )),
+                            ),
+                          ),
                           Positioned(
                               bottom: 1,
                               right: 1,
@@ -330,9 +368,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               color: AppColors.blackColor.withOpacity(0.6),
                             ),
                             onPressed: () {
-
-
-
 
                               pickImage(ImageSource.gallery);
                               Navigator.of(context).pop();
