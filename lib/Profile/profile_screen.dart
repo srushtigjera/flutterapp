@@ -24,7 +24,31 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
   bool signOut = true;
+  var emailData;
+  var nameData;
+  var nationalityData;
+  var languagesData;
+  var citiesData;
+  var currencyData;
+  var studentOrParentData;
 
+
+   getData() async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+     emailData = prefs.getString("emaill");
+     nameData = prefs.getString("name");
+     nationalityData = prefs.getString("nationality");
+     languagesData = prefs.getString("language");
+     citiesData = prefs.getString("citiess");
+     currencyData = prefs.getString("currency");
+  //   studentOrParentData = prefs.getString("studentOrParent");
+     print("$emailData");
+  }
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +114,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text('SRUSHTI',style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
-                             Text('srushtigajera234@gmail.com',style: TextStyle(color: AppColors.greyColor),)
+                             Text(nameData,style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
+                             Text(emailData!,style: TextStyle(color: AppColors.greyColor),)
                            ],
                          )
                        ],
@@ -128,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('User')),
-                                 Expanded(child: Text('Student')),
+                                 Expanded(child: Text("studentOrParentData!")),
                                ],
                              ),
                            ),
@@ -174,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('Nationality')),
-                                 Expanded(child: Text('Albanian')),
+                                 Expanded(child: Text(nationalityData!)),
                                ],
                              ),
                            ),
@@ -197,7 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('languages')),
-                                 Expanded(child: Text('English')),
+                                 Expanded(child: Text(languagesData!)),
                                ],
                              ),
                            ),
@@ -220,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('Currency')),
-                                 Expanded(child: Text('GHS')),
+                                 Expanded(child: Text(currencyData!)),
                                ],
                              ),
                            ),
@@ -243,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('Cities')),
-                                 Expanded(child: Text('Nottingham')),
+                                 Expanded(child: Text(citiesData)),
                                ],
                              ),
                            ),

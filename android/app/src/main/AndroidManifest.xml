@@ -9,7 +9,7 @@
         android:requestLegacyExternalStorage="true"
         android:label="practice_demo_cwic"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launchers">
         <activity
             android:name=".MainActivity"
             android:exported="true"

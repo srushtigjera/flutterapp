@@ -24,10 +24,13 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
 
   bool isParentOrGuardian = false;
   bool isStudent = false;
+  var  isParentOrGuardianisStudent;
   bool homeScreen = false;
   var formKey = GlobalKey<FormState>();
 
   var dateInput = TextEditingController();
+  var languages = TextEditingController();
+  var cities = TextEditingController();
   String? strDob, strLang, strUnivCollege, strCurrency = 'GBP (£)';
 
   var strNationality;
@@ -43,8 +46,27 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
     } else if(isValid!){
       setState(() async {
         homeScreen = true;
+       /* if(isParentOrGuardian == true)
+        {
+          isParentOrGuardianisStudent = 'Parent/Gaurdian';
+        }*/
+
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("logindata", homeScreen);
+        prefs.setString("nationality", strNationality);
+        prefs.setString("language", languages.text);
+        prefs.setString("citiess", cities.text);
+        prefs.setString("currency", strCurrency.toString());
+        prefs.setString("studentOrParent", isParentOrGuardianisStudent!);
+
+
+        /*if(isStudent == true)
+        {
+          setState(() {
+            isParentOrGuardianisStudent = 'Student';
+          });
+        }*/
+       // print(isParentOrGuardianisStudent);
         AppRoutes().nextScreen(context, HomeTab());
       });
     }
@@ -185,7 +207,6 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                               showSearchBox: true,
                               dropDownButton: Container(),
                               dropdownSearchDecoration: InputDecoration(
-
                                 //  borderRadius: BorderRadius.circular(14),
                                 contentPadding: EdgeInsets.fromLTRB(20, 5, 7, 7),
                                 border: InputBorder.none,
@@ -209,6 +230,7 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                               borderRadius: BorderRadius.circular(14),
                             ),
                             child: TextFormField(
+                              controller: languages,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Enter a valid languages!';
@@ -229,7 +251,7 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
                               borderRadius: BorderRadius.circular(14),
                             ),
                             child: TextFormField(
-
+                              controller: cities,
                                 onTap: (){
                                   setState(() {
                                     showCity();

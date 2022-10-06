@@ -28,6 +28,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   File? imageFile = null;
   String? fileName;
   String? imageUrl;
+  var emailData = TextEditingController();
+  var nameData = TextEditingController();
 
   void submit() {
     final isValid = formKey.currentState?.validate();
@@ -42,6 +44,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         signUpScreen = false;
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("logindata", signUpScreen);
+        prefs.setString("emaill", emailData.text);
+        prefs.setString("name", nameData.text);
         AppRoutes().nextScreen(context, AdditionalInfoScreen());
       });
     }
@@ -136,6 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: TextFormField(
+                          controller: nameData,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                               hintText: "Full Name",
@@ -157,6 +162,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: TextFormField(
+                            controller: emailData,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                               hintText: "Email",

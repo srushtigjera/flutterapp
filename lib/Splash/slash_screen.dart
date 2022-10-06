@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Home/home_screen.dart';
+import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
@@ -18,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   getAllSavedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? value = prefs.getBool("logindata");
+     value = prefs.getBool("logindata");
+     print(value);
 
     /* if(value == true){
       setState(() {
@@ -38,8 +40,9 @@ class _SplashScreenState extends State<SplashScreen> {
         const Duration(seconds: 3),
             () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => value == true ? HomeScreen():LoginHomeScreen()),
+          MaterialPageRoute(builder: (context) => value == true ? HomeTab():LoginHomeScreen()),
         ));
+    getAllSavedData();
   }
 
   @override
