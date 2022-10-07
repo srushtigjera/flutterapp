@@ -24,8 +24,14 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
 
   bool isParentOrGuardian = false;
   bool isStudent = false;
+
+  bool parentOrGuardian = false;
+  bool student = false;
+
   var  isParentOrGuardianisStudent;
+
   bool homeScreen = false;
+
   var formKey = GlobalKey<FormState>();
 
   var dateInput = TextEditingController();
@@ -46,18 +52,33 @@ class _AdditionalInfoScreenState extends State<AdditionalInfoScreen> {
     } else if(isValid!){
       setState(() async {
         homeScreen = true;
-       /* if(isParentOrGuardian == true)
+        if(isParentOrGuardian == true)
         {
-          isParentOrGuardianisStudent = 'Parent/Gaurdian';
-        }*/
+          setState(() {
+            isParentOrGuardianisStudent = 'Parent/Gaurdian';
+            parentOrGuardian = true;
+            student = false;
+          });
+        }
+        if(isStudent == true)
+        {
+          setState(() {
+            isParentOrGuardianisStudent = 'Student';
+            parentOrGuardian = false;
+            student = true;
+          });
+        }
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("logindata", homeScreen);
+        prefs.setBool("parentOrGuardian", parentOrGuardian);
+        prefs.setBool("student", student);
         prefs.setString("nationality", strNationality);
+        prefs.setString("date", dateInput.text);
         prefs.setString("language", languages.text);
         prefs.setString("citiess", cities.text);
         prefs.setString("currency", strCurrency.toString());
-        prefs.setString("studentOrParent", isParentOrGuardianisStudent!);
+        prefs.setString("studentOrParent", isParentOrGuardianisStudent);
 
 
         /*if(isStudent == true)

@@ -5,6 +5,7 @@ import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/Widgets/custom_back_btn.dart';
 import 'package:practice_demo_cwic/Widgets/custom_btn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -14,8 +15,76 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  bool checkParant = false;
-  bool checkStudent = false;
+   bool checkParant = false ;
+   bool checkStudent = false ;
+
+  bool isParentOrGuardians = false;
+  bool isStudents = false;
+
+  var emails = TextEditingController();
+  var fullName = TextEditingController();
+  var nationality = TextEditingController();
+  var language = TextEditingController();
+  var Currency = TextEditingController();
+  var date = TextEditingController();
+
+  var emailData;
+  var nameData;
+  var nationalityData;
+  var languagesData;
+  var citiesData;
+  var currencyData;
+  var studentOrParentData;
+  var imgData;
+  var dateData;
+  bool parentOrGuardians = false;
+  bool students = false;
+
+  getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+ //   parentOrGuardians = prefs.getBool("parentOrGuardian")!;
+  //  students = prefs.getBool("student")!;
+    emailData = prefs.getString("emaill");
+    nameData = prefs.getString("name");
+    nationalityData = prefs.getString("nationality");
+    languagesData = prefs.getString("language");
+    citiesData = prefs.getString("citiess");
+    currencyData = prefs.getString("currency");
+    studentOrParentData = prefs.getString("studentOrParent");
+    dateData = prefs.getString("date");
+    imgData = prefs.getString("img");
+
+    print('Email id  $students');
+    print('Email id  $parentOrGuardians');
+
+    setState(() {
+       emails.text = emailData!;
+       fullName.text = nameData!;
+       nationality.text = nationalityData!;
+       language.text = languagesData!;
+       Currency.text = currencyData!;
+       date.text = dateData!;
+/*
+       if(parentOrGuardians == true){
+         checkParant = true;
+         checkStudent = false;
+       }
+
+       if(students == true){
+         checkParant = false;
+         checkStudent = true;
+       }*/
+
+       /*checkParant = parentOrGuardian!;
+       checkStudent = student!;*/
+    });
+  }
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,48 +131,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
               SizedBox(height: 10,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.only(right: 11,left: 11),
                 child: Row(
                   children: [
-                    Flexible(
-                      child: Transform.scale(
-                        scale: 1.3,
-                        child: Checkbox(
+                    Transform.scale(
+                      scale: 1.2,
+                      child: Checkbox(
+                        // checkColor: AppColors.primary,
+                        //activeColor: AppColors.primary,
                           side: BorderSide(
-                            color: AppColors.primary,
-                            width: 1
+                              color: AppColors.primary
                           ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                            value:this.checkParant,
-                            onChanged: (bool? value){
-                          setState(() {
-                            this.checkParant = value!;
-                          }
-                          );
-                            }),
-                      ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular((6.0))),
+                          value: isParentOrGuardians,
+                          onChanged: (data){
+                            setState(() {
+                              isParentOrGuardians = data!;
+                              print(isParentOrGuardians);
+                              isStudents = false;
+                            });
+                          }),
                     ),
-                    Text("I'm a Parent/Guardian"),
+                    Text("I'm a Parent/Guardian",style: TextStyle(color: AppColors.blackColor,fontSize: 15),),
 
-                    SizedBox(width: 10,),
-                    Flexible(
-                      child: Transform.scale(
-                        scale: 1.3,
-                        child: Checkbox(
+                    Transform.scale(
+                      scale: 1.2,
+                      child: Checkbox(
                           side: BorderSide(
-                            color: AppColors.primary,
-                            width: 1
+                              color: AppColors.primary
                           ),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                            value: this.checkStudent, 
-                            onChanged: (bool? value){
-                              setState(() {
-                                this.checkStudent = value!;
-                              });
-                            }),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular((6.0))),
+                          value: isStudents,
+                          onChanged: (data){
+                            print (data);
+                            setState(() {
+                              isStudents = data!;
+                              isParentOrGuardians = false;
+                              print(isStudents);
+                            });
+                          }
                       ),
                     ),
-                    Text("I'm a Student")
+                    Text("I'm a Student",style: TextStyle(color: AppColors.blackColor,fontSize: 15),)
                   ],
                 ),
               ),
@@ -124,9 +193,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: fullName,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "srushti",
+                           // hintText: "srushti",
                             border: InputBorder.none,
                           )),
                     ),
@@ -142,6 +212,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: emails,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                             hintText: "srushti@gmail.com",
@@ -160,6 +231,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: date,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                             hintText: "1-jan-1920",
@@ -178,6 +250,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: nationality,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                             hintText: "India",
@@ -196,6 +269,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: language,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                             hintText: "Gujarati",
@@ -232,6 +306,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
+                        controller: Currency,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                             hintText: "GBP",

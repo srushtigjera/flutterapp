@@ -24,6 +24,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
   bool signOut = true;
+
   var emailData;
   var nameData;
   var nationalityData;
@@ -31,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var citiesData;
   var currencyData;
   var studentOrParentData;
+ // var imgData;
 
 
    getData() async {
@@ -41,8 +43,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
      languagesData = prefs.getString("language");
      citiesData = prefs.getString("citiess");
      currencyData = prefs.getString("currency");
-  //   studentOrParentData = prefs.getString("studentOrParent");
-     print("$emailData");
+     studentOrParentData = prefs.getString("studentOrParent");
+    // imgData = prefs.getString("img");
+
+    // print("images of data    $imgData");
+     print("$nameData");
   }
   @override
   void initState() {
@@ -107,7 +112,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                child: Image.asset(AppImages.profilepic,
                                  height: 120,
                                  width: 120,
-                                 fit: BoxFit.cover,)
+                                 fit: BoxFit.cover,
+                               )
                            ),
                          ),
                          SizedBox(width: 25,),
@@ -152,7 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('User')),
-                                 Expanded(child: Text("studentOrParentData!")),
+                                 Expanded(child: Text(studentOrParentData!)),
                                ],
                              ),
                            ),

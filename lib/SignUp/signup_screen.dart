@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   File? imageFile = null;
   String? fileName;
-  String? imageUrl;
+  var imageUrl;
   var emailData = TextEditingController();
   var nameData = TextEditingController();
 
@@ -46,6 +46,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         prefs.setBool("logindata", signUpScreen);
         prefs.setString("emaill", emailData.text);
         prefs.setString("name", nameData.text);
+      //  prefs.setString("img", imageFile.toString());
+
+        print('images data${imageFile}');
         AppRoutes().nextScreen(context, AdditionalInfoScreen());
       });
     }
