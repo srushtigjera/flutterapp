@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Home/home_screen.dart';
 import 'package:practice_demo_cwic/Home/home_tab.dart';
@@ -21,20 +22,53 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var formKey = GlobalKey<FormState>();
   bool loginData = false;
+  var cltEmail = TextEditingController();
+  var cltPassword = TextEditingController();
+  Dio _dio = Dio();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
+ void loginDataa() async {
 
-  void submit() {
-    final isValid = formKey.currentState?.validate();
-    if (isValid!) {
-      setState(() async {
-        loginData = true;
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setBool("logindata", loginData);
-        AppRoutes().nextScreen(context, HomeTab());
-      });
+    var peram = {
+      'email' : cltEmail.text,
+      'password' : cltPassword.text
+    };
+
+    var url = 'http://3.142.18.201/cwic/api/user/login';
+    var login = await _dio.post(url, data: peram);
+
+    var loginResponse = login.data;
+    var loginSuccess = loginResponse["status"].toString();
+
+    if(loginSuccess == 'Success'){
+      var token = loginResponse["data"]["token"].toString();
+      var userId = loginResponse["data"]["user_id"].toString();
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
+      prefs.setString('userId', userId);
+      //prefs.setString('email', email);
+
+      final isValid = formKey.currentState?.validate();
+      if (isValid!) {
+        setState(() {
+          loginData = true;
+          prefs.setBool("logindata", loginData);
+          AppRoutes().nextScreen(context, HomeTab());
+        });
+      }
+      formKey.currentState?.save();
+
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter valid email/password'),),
+      );
     }
-    formKey.currentState?.save();
   }
 
   @override
@@ -79,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(14),
                           ),
                           child: TextFormField(
+                            controller: cltEmail,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                                 hintText: "Email",
@@ -103,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(14),
                           ),
                           child: TextFormField(
+                            controller: cltPassword,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                                 hintText: "Password",
@@ -136,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               txtColor: AppColors.white,
                               buttonBorder: AppColors.primary,
                               onPressed: (){
-                                submit();
+                                loginDataa();
                                 /*setState(() async {
                                   loginData = true;
                                   SharedPreferences prefs = await SharedPreferences.getInstance();

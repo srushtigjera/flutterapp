@@ -25,29 +25,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
   bool signOut = true;
 
-  var emailData;
-  var nameData;
-  var nationalityData;
-  var languagesData;
-  var citiesData;
-  var currencyData;
-  var studentOrParentData;
+  var emailData='';
+//  var nameData;
+  var nationalityData ='';
+  var languagesData ='';
+  var citiesData='';
+  var currencyData='';
+  var studentOrParentData='';
  // var imgData;
 
 
    getData() async {
      SharedPreferences prefs = await SharedPreferences.getInstance();
-     emailData = prefs.getString("emaill");
-     nameData = prefs.getString("name");
-     nationalityData = prefs.getString("nationality");
-     languagesData = prefs.getString("language");
-     citiesData = prefs.getString("citiess");
-     currencyData = prefs.getString("currency");
-     studentOrParentData = prefs.getString("studentOrParent");
+     setState(() {
+       emailData = prefs.getString("emaill")!;
+       // nameData = prefs.getString("name");
+       nationalityData = prefs.getString("nationality")!;
+       languagesData = prefs.getString("language")!;
+       citiesData = prefs.getString("citiess")!;
+       currencyData = prefs.getString("currency")!;
+       studentOrParentData = prefs.getString("studentOrParent")!;
+     });
     // imgData = prefs.getString("img");
-
     // print("images of data    $imgData");
-     print("$nameData");
+   //  print("$nameData");
   }
   @override
   void initState() {
@@ -120,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text(nameData,style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
+                             Text('nameData',style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
                              Text(emailData!,style: TextStyle(color: AppColors.greyColor),)
                            ],
                          )

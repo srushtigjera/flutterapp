@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,41 +33,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var emailData = TextEditingController();
   var nameData = TextEditingController();
 
-  void submit() {
-    final isValid = formKey.currentState?.validate();
+  Dio dio = Dio();
 
-    if (imageFile == null) {
-      setState(() {
-        CustomDialog()
-            .show(context, "Error", "Please upload your profile picture");
-      });
-    } else if(isValid!){
-      setState(() async {
-        signUpScreen = false;
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setBool("logindata", signUpScreen);
-        prefs.setString("emaill", emailData.text);
-        prefs.setString("name", nameData.text);
-      //  prefs.setString("img", imageFile.toString());
+@override
+  void initState() {
+    // TODO: implement initState
+  signupData();
+    super.initState();
+  }
 
-        print('images data${imageFile}');
-        AppRoutes().nextScreen(context, AdditionalInfoScreen());
-      });
-    }
-    /*if (isValid!) {
-      setState(() async {
-        if (imageFile == null) {
+  void signupData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+
+    var param = {
+      'user_profile' : imageFile,
+      'user_full_name': nameData.text,
+      'user_email': emailData.text,
+      'user_password':password.text
+    };
+
+    var url = 'http://3.142.18.201/cwic/api/user/registration';
+    var signupResponse = await dio.post(url,data: json.encode(param),options: Options(headers: {
+      'Authorization': 'Bearer $token',
+    }));
+
+    print('==-=-=-=-===-==-=-==-=-=$signupResponse');
+    var signupResponseData = signupResponse.data;
+    var signupResponseStatus = signupResponseData['status'].toString();
+
+    if(signupResponseStatus == 'Success'){
+      final isValid = formKey.currentState?.validate();
+
+      if (imageFile == null) {
+        setState(() {
           CustomDialog()
               .show(context, "Error", "Please upload your profile picture");
-        }else{
+        });
+      } else if(isValid!){
+        setState(() async {
           signUpScreen = false;
-          SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setBool("logindata", signUpScreen);
+          prefs.setString("emaill", emailData.text);
+          prefs.setString("name", nameData.text);
+          //  prefs.setString("img", imageFile.toString());
+
+          print('images data${imageFile}');
           AppRoutes().nextScreen(context, AdditionalInfoScreen());
-        }
-      });
-    }*/
-    formKey.currentState?.save();
+        });
+      }
+      formKey.currentState?.save();
+    }
   }
 
   @override
@@ -237,7 +255,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             txtColor: AppColors.white,
                             buttonBorder: AppColors.primary,
                             onPressed: (){
-                              submit();
+                              signupData();
                               /*setState(() async {
                                 signUpScreen = false;
                                 SharedPreferences prefs = await SharedPreferences.getInstance();

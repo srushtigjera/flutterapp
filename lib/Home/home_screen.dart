@@ -460,7 +460,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        AppRoutes().nextScreen(context, LocationWiseData());
+                       // AppRoutes().nextScreen(context, LocationWiseData());
                       },
                       child: Expanded(
                         child: Container(

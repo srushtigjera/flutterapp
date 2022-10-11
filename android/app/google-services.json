@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494305434303",
+    "project_id": "practiceciwc",
+    "storage_bucket": "practiceciwc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494305434303:android:95ee308519703cdb45840a",
+        "android_client_info": {
+          "package_name": "com.example.practice_demo_cwic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494305434303-aleun3hfld1glic5nkegtalbmdk3nogt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChxK-cADmp_oGkXEWUhPsToFFxznQMuDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494305434303-aleun3hfld1glic5nkegtalbmdk3nogt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
