@@ -37,8 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 @override
   void initState() {
-    // TODO: implement initState
-  signupData();
+
     super.initState();
   }
 
@@ -47,12 +46,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var token = prefs.getString('token');
 
     var param = {
-      'user_profile' : imageFile,
+      'user_profile' : fileName,
       'user_full_name': nameData.text,
       'user_email': emailData.text,
       'user_password':password.text
     };
-
+    print(param);
     var url = 'http://3.142.18.201/cwic/api/user/registration';
     var signupResponse = await dio.post(url,data: json.encode(param),options: Options(headers: {
       'Authorization': 'Bearer $token',
@@ -61,28 +60,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     print('==-=-=-=-===-==-=-==-=-=$signupResponse');
     var signupResponseData = signupResponse.data;
     var signupResponseStatus = signupResponseData['status'].toString();
-
     if(signupResponseStatus == 'Success'){
-      final isValid = formKey.currentState?.validate();
+      AppRoutes().nextScreen(context, AdditionalInfoScreen());
+    }else if (signupResponseStatus == 'Error'){
+      var msg = signupResponseData["message"].toString();
 
-      if (imageFile == null) {
+      if(msg == "Email already register in user."){
         setState(() {
           CustomDialog()
-              .show(context, "Error", "Please upload your profile picture");
-        });
-      } else if(isValid!){
-        setState(() async {
-          signUpScreen = false;
-          prefs.setBool("logindata", signUpScreen);
-          prefs.setString("emaill", emailData.text);
-          prefs.setString("name", nameData.text);
-          //  prefs.setString("img", imageFile.toString());
-
-          print('images data${imageFile}');
-          AppRoutes().nextScreen(context, AdditionalInfoScreen());
+              .show(context, "Error", "Email already register");
         });
       }
-      formKey.currentState?.save();
     }
   }
 
@@ -244,7 +232,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                       ),
-
                       SizedBox(height: 15,),
                       SizedBox(
                         height: 55,
@@ -254,14 +241,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             primary: AppColors.primary,
                             txtColor: AppColors.white,
                             buttonBorder: AppColors.primary,
-                            onPressed: (){
-                              signupData();
-                              /*setState(() async {
-                                signUpScreen = false;
-                                SharedPreferences prefs = await SharedPreferences.getInstance();
-                                prefs.setBool("logindata", signUpScreen);
-                                AppRoutes().nextScreen(context, AdditionalInfoScreen());
-                              });*/
+                            onPressed: () async {
+
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              setState(()  {
+                                final isValid = formKey.currentState?.validate();
+
+                                if (imageFile == null) {
+                                  setState(() {
+                                    CustomDialog()
+                                        .show(context, "Error", "Please upload your profile picture");
+                                  });
+                                } else if(isValid!){
+                                  setState(() async {
+                                    signUpScreen = false;
+                                    prefs.setBool("logindata", signUpScreen);
+                                    prefs.setString("emaill", emailData.text);
+                                    prefs.setString("name", nameData.text);
+                                    //  prefs.setString("img", imageFile.toString());
+
+                                    print('images data${imageFile}');
+
+                                    signupData();
+                                  });
+                                }
+                                formKey.currentState?.save();
+
+                              });
                             }),
                       ),
                       SizedBox(height: 15,),

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Dailog/custom_dialog.dart';
 import 'package:practice_demo_cwic/Home/home_screen.dart';
 import 'package:practice_demo_cwic/Home/home_tab.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
  void loginDataa() async {
-
+   SharedPreferences prefs = await SharedPreferences.getInstance();
     var peram = {
       'email' : cltEmail.text,
       'password' : cltPassword.text
@@ -45,29 +46,39 @@ class _LoginScreenState extends State<LoginScreen> {
     var loginResponse = login.data;
     var loginSuccess = loginResponse["status"].toString();
 
+
     if(loginSuccess == 'Success'){
       var token = loginResponse["data"]["token"].toString();
       var userId = loginResponse["data"]["user_id"].toString();
+      var id  = loginResponse["data"]["apiParameters"]["id"].toString();
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+     // print('idid   $id');
+
       prefs.setString('token', token);
       prefs.setString('userId', userId);
+      prefs.setString('id', id);
       //prefs.setString('email', email);
+      AppRoutes().nextScreen(context, HomeTab());
 
-      final isValid = formKey.currentState?.validate();
-      if (isValid!) {
+    }else if(loginSuccess == 'Error'){
+
+      var msg = loginResponse["message"].toString();
+      if(msg == "Invalid Credentials !"){
         setState(() {
-          loginData = true;
-          prefs.setBool("logindata", loginData);
-          AppRoutes().nextScreen(context, HomeTab());
+          CustomDialog()
+              .show(context, "Error", "Invalid Credentials");
         });
       }
-      formKey.currentState?.save();
+      if(msg == "User does not exist !"){
+        setState(() {
+          CustomDialog()
+              .show(context, "Error", "User does not exist");
+        });
+      }
 
-    }else{
-      ScaffoldMessenger.of(context).showSnackBar(
+     /* ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter valid email/password'),),
-      );
+      );*/
     }
   }
 
@@ -171,11 +182,22 @@ class _LoginScreenState extends State<LoginScreen> {
                               primary: AppColors.primary,
                               txtColor: AppColors.white,
                               buttonBorder: AppColors.primary,
-                              onPressed: (){
-                                loginDataa();
+                              onPressed: () async {
+
+
+                                final isValid = formKey.currentState?.validate();
+                                if (isValid!) {
+                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                                  setState(() {
+                                    loginData = true;
+                                    prefs.setBool("logindata", loginData);
+                                    loginDataa();
+                                  });
+                                }
+                                formKey.currentState?.save();
                                 /*setState(() async {
                                   loginData = true;
-                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+
                                   prefs.setBool("logindata", loginData);
                                   AppRoutes().nextScreen(context, HomeTab());
                                 });*/

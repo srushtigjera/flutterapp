@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
@@ -33,6 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var currencyData='';
   var studentOrParentData='';
  // var imgData;
+  Dio dio = Dio();
 
 
    getData() async {
@@ -50,6 +52,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // print("images of data    $imgData");
    //  print("$nameData");
   }
+
+
+  void logOut() async {
+
+     SharedPreferences pref = await SharedPreferences.getInstance() ;
+
+     var userId = pref.getString('userId');
+     var token = pref.getString('token');
+     var param = {
+       "user_id" : userId
+     };
+
+     var url = 'http://3.142.18.201/cwic/api/user/logout';
+     var logOutData = await dio.post(url , data: param ,options: Options(headers: {
+       'Authorization': 'Bearer $token',
+     }));
+  }
+
+
+
+
+
   @override
   void initState() {
     getData();
