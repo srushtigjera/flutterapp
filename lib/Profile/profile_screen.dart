@@ -57,7 +57,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void logOut() async {
 
      SharedPreferences pref = await SharedPreferences.getInstance() ;
-
      var userId = pref.getString('userId');
      var token = pref.getString('token');
      var param = {
@@ -68,11 +67,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
      var logOutData = await dio.post(url , data: param ,options: Options(headers: {
        'Authorization': 'Bearer $token',
      }));
+
+     var logOutResponse = logOutData.data;
+     var logOutSuccess = logOutResponse["status"].toString();
+
+     if(logOutSuccess == "Success"){
+       AppRoutes().nextAndRemoveUtils(context, LoginHomeScreen());
+     }
   }
-
-
-
-
 
   @override
   void initState() {
@@ -369,7 +371,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                      signOut = false;
                                      SharedPreferences prefs = await SharedPreferences.getInstance();
                                      prefs.setBool("logindata", signOut);
-                                     AppRoutes().nextAndRemoveUtils(context, LoginHomeScreen());
+                                     logOut();
+
                                     // AppRoutes().nextScreen(context, LoginHomeScreen());
                                    },
                                    child: Text("Sign Out",style: TextStyle(color: Colors.red),)),
