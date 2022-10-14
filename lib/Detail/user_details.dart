@@ -225,6 +225,8 @@ class Data {
     data['login_type'] = this._loginType;
     return data;
   }
+
+
 }
 
 class CitysArr {

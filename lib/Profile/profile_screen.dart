@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_demo_cwic/Detail/user_details.dart';
 import 'package:practice_demo_cwic/Login/login_home_screen.dart';
 import 'package:practice_demo_cwic/Notifications/notification_screen.dart';
 import 'package:practice_demo_cwic/changeEmail/change_email_screen.dart';
@@ -26,15 +30,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
   bool signOut = true;
 
-  var emailData='';
-//  var nameData;
+  var img ;
+  var emailData ='';
+  var ageData ='';
+  var nameData ='';
   var nationalityData ='';
   var languagesData ='';
-  var citiesData='';
-  var currencyData='';
-  var studentOrParentData='';
+  var citiesData ='';
+  var currencyData ='';
+  var studentOrParentData ='';
  // var imgData;
   Dio dio = Dio();
+
+  userDetails userData = userDetails();
 
 
    getData() async {
@@ -53,6 +61,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
    //  print("$nameData");
   }
 
+  void getUserDetails() async {
+    SharedPreferences pref = await SharedPreferences.getInstance() ;
+    var userId = pref.getString('userId');
+    var token = pref.getString('token');
+    var id = pref.getString('id');
+
+    var param = {
+    "apiParameters":{
+      "user_id" : userId,
+      "id" : id }
+    };
+    var url = 'http://3.142.18.201/cwic/api/user/get/user/details';
+    var userDetailsData = await dio.post(url , data: param ,options: Options(headers: {
+      'Authorization': 'Bearer $token',
+    }));
+
+    var userDetailsResponse = userDetailsData.data;
+    var userDetailsStatus = userDetailsResponse["status"].toString();
+  //  var usersData = userDetailsResponse['data'].toString();
+    setState(() {
+      emailData = userDetailsResponse['data']['user_email'].toString();
+      ageData = userDetailsResponse['data']['age'].toString();
+      nationalityData = userDetailsResponse['data']['nationality'].toString();
+      languagesData = userDetailsResponse['data']['languages'].toString();
+      currencyData = userDetailsResponse['data']['currency'].toString();
+      studentOrParentData = userDetailsResponse['data']['user_type'].toString();
+      nameData = userDetailsResponse['data']['user_full_name'].toString();
+      img =userDetailsResponse['data']['user_profile'].toString() ;
+    });
+
+    if(userDetailsStatus == "Success")
+    {
+
+    }
+  }
 
   void logOut() async {
 
@@ -75,10 +118,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
        AppRoutes().nextAndRemoveUtils(context, LoginHomeScreen());
      }
   }
-
   @override
   void initState() {
-    getData();
+    //getData();
+    getUserDetails();
     super.initState();
   }
 
@@ -136,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          CircleAvatar(
                            radius: 45,
                            child: ClipOval(
-                               child: Image.asset(AppImages.profilepic,
+                               child: Image.network(img,
                                  height: 120,
                                  width: 120,
                                  fit: BoxFit.cover,
@@ -147,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text('nameData',style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
+                             Text(nameData!,style: TextStyle(color: AppColors.blackColor,fontSize: 16),),
                              Text(emailData!,style: TextStyle(color: AppColors.greyColor),)
                            ],
                          )
@@ -208,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              child: Row(
                                children: [
                                  Expanded(child: Text('Age')),
-                                 Expanded(child: Text('22')),
+                                 Expanded(child: Text(ageData!)),
                                ],
                              ),
                            ),
