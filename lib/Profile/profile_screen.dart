@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:html';
-
+import 'dart:io';
 import 'package:dio/dio.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Detail/user_details.dart';
@@ -16,7 +16,6 @@ import 'package:practice_demo_cwic/Utils/app_routes.dart';
 import 'package:practice_demo_cwic/about_us_screen.dart';
 import 'package:practice_demo_cwic/brand_ambassadors_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'editprofile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool visibles = false;
   bool signOut = true;
 
-  var img ;
+  var img ='';
   var emailData ='';
   var ageData ='';
   var nameData ='';
@@ -45,21 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   userDetails userData = userDetails();
 
 
-   getData() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance();
-     setState(() {
-       emailData = prefs.getString("emaill")!;
-       // nameData = prefs.getString("name");
-       nationalityData = prefs.getString("nationality")!;
-       languagesData = prefs.getString("language")!;
-       citiesData = prefs.getString("citiess")!;
-       currencyData = prefs.getString("currency")!;
-       studentOrParentData = prefs.getString("studentOrParent")!;
-     });
-    // imgData = prefs.getString("img");
-    // print("images of data    $imgData");
-   //  print("$nameData");
-  }
+
 
   void getUserDetails() async {
     SharedPreferences pref = await SharedPreferences.getInstance() ;
@@ -81,16 +66,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var userDetailsStatus = userDetailsResponse["status"].toString();
   //  var usersData = userDetailsResponse['data'].toString();
     setState(() {
-      emailData = userDetailsResponse['data']['user_email'].toString();
-      ageData = userDetailsResponse['data']['age'].toString();
+      emailData = userDetailsResponse['data']['user_email'].toString() ;
+      ageData = userDetailsResponse['data']['age'].toString() ;
       nationalityData = userDetailsResponse['data']['nationality'].toString();
-      languagesData = userDetailsResponse['data']['languages'].toString();
-      currencyData = userDetailsResponse['data']['currency'].toString();
+      languagesData = userDetailsResponse['data']['languages'].toString() ;
+      currencyData = userDetailsResponse['data']['currency'].toString() ;
       studentOrParentData = userDetailsResponse['data']['user_type'].toString();
-      nameData = userDetailsResponse['data']['user_full_name'].toString();
+      nameData = userDetailsResponse['data']['user_full_name'].toString() ;
       img =userDetailsResponse['data']['user_profile'].toString() ;
     });
 
+    print("emailDataemailDataemailData====$userDetailsResponse");
     if(userDetailsStatus == "Success")
     {
 
@@ -113,7 +99,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
      var logOutResponse = logOutData.data;
      var logOutSuccess = logOutResponse["status"].toString();
+     var logOutMsg = logOutResponse["message"].toString();
 
+
+     print(logOutMsg);
      if(logOutSuccess == "Success"){
        AppRoutes().nextAndRemoveUtils(context, LoginHomeScreen());
      }
@@ -179,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                          CircleAvatar(
                            radius: 45,
                            child: ClipOval(
-                               child: Image.network(img,
+                               child: Image.network(img!,
                                  height: 120,
                                  width: 120,
                                  fit: BoxFit.cover,

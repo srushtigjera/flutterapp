@@ -1,3 +1,6 @@
+
+import 'package:dio/dio.dart';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
@@ -15,73 +18,71 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-   bool checkParant = false ;
-   bool checkStudent = false ;
 
   bool isParentOrGuardians = false;
   bool isStudents = false;
-
-  var emails = TextEditingController();
-  var fullName = TextEditingController();
-  var nationality = TextEditingController();
-  var language = TextEditingController();
-  var Currency = TextEditingController();
-  var date = TextEditingController();
-
-  var emailData;
-  var nameData;
-  var nationalityData;
-  var languagesData;
-  var citiesData;
-  var currencyData;
-  var studentOrParentData;
-  var imgData;
-  var dateData;
+  var emailDatas = TextEditingController();
+  var nameData = TextEditingController();
+  var nationalityData = TextEditingController();
+  var languagesData = TextEditingController();
+  var currencyData = TextEditingController();
+  var dateData = TextEditingController();
+  var img = "";
+  var citiesData = "";
+  var studentOrParentData = "";
+  var imgData = "";
   bool parentOrGuardians = false;
   bool students = false;
+  Dio dio = Dio();
 
-  getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
- //   parentOrGuardians = prefs.getBool("parentOrGuardian")!;
-  //  students = prefs.getBool("student")!;
-    emailData = prefs.getString("emaill");
-    nameData = prefs.getString("name");
-    nationalityData = prefs.getString("nationality");
-    languagesData = prefs.getString("language");
-    citiesData = prefs.getString("citiess");
-    currencyData = prefs.getString("currency");
-    studentOrParentData = prefs.getString("studentOrParent");
-    dateData = prefs.getString("date");
-    imgData = prefs.getString("img");
+   void getUserDetails() async {
+     SharedPreferences pref = await SharedPreferences.getInstance() ;
+     var userId = pref.getString('userId');
+     var token = pref.getString('token');
+     var id = pref.getString('id');
 
-    print('Email id  $students');
-    print('Email id  $parentOrGuardians');
+     var param = {
+       "apiParameters":{
+         "user_id" : userId,
+         "id" : id }
+     };
+     var url = 'http://3.142.18.201/cwic/api/user/get/user/details';
+     var userDetailsData = await dio.post(url , data: param ,options: Options(headers: {
+       'Authorization': 'Bearer $token',
+     }));
 
-    setState(() {
-       emails.text = emailData!;
-       fullName.text = nameData!;
-       nationality.text = nationalityData!;
-       language.text = languagesData!;
-       Currency.text = currencyData!;
-       date.text = dateData!;
-/*
-       if(parentOrGuardians == true){
-         checkParant = true;
-         checkStudent = false;
+     var userDetailsResponse = userDetailsData.data;
+     var userDetailsStatus = userDetailsResponse["status"].toString();
+     //  var usersData = userDetailsResponse['data'].toString();
+     setState(() {
+       emailDatas.text = userDetailsResponse['data']['user_email'].toString() ;
+       nationalityData.text = userDetailsResponse['data']['nationality'].toString() ;
+       languagesData.text = userDetailsResponse['data']['languages'].toString();
+       currencyData.text = userDetailsResponse['data']['currency'].toString() ;
+       studentOrParentData = userDetailsResponse['data']['user_type'].toString() ;
+       nameData.text = userDetailsResponse['data']['user_full_name'].toString() ;
+       img =userDetailsResponse['data']['user_profile'].toString() ;
+       dateData.text = userDetailsResponse['data']['date_of_birth'].toString() ;
+
+      if(studentOrParentData == 'Student'){
+         setState(() {
+           isParentOrGuardians = false;
+           isStudents = true;
+         });
        }
+      if(studentOrParentData == 'Parent'){
+         setState(() {
+           isParentOrGuardians = true;
+           isStudents = false;
+         });
+       }
+       print(studentOrParentData);
+     });
+   }
 
-       if(students == true){
-         checkParant = false;
-         checkStudent = true;
-       }*/
-
-       /*checkParant = parentOrGuardian!;
-       checkStudent = student!;*/
-    });
-  }
   @override
   void initState() {
-    getData();
+    getUserDetails();
     super.initState();
   }
 
@@ -109,8 +110,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     children: [
                       CircleAvatar(
                         radius: 60,
-                        child: ClipRRect(
-                          child: Image.asset(AppImages.profilepic),
+                        child: ClipOval(
+                            child: Image.network(img,
+                              height: 120,
+                              width: 120,
+                              fit: BoxFit.cover,
+                            )
                         ),
                       ),
                       Positioned(
@@ -193,7 +198,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: fullName,
+                        controller: nameData,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
                            // hintText: "srushti",
@@ -212,10 +217,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: emails,
+                        controller: emailDatas,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "srushti@gmail.com",
+                          //  hintText: "srushti@gmail.com",
                             border: InputBorder.none,
                           )),
                     ),
@@ -231,10 +236,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: date,
+                        controller: dateData,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "1-jan-1920",
+                          //  hintText: "1-jan-1920",
                             border: InputBorder.none,
                           )),
                     ),
@@ -250,10 +255,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: nationality,
+                        controller: nationalityData,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "India",
+                           // hintText: "India",
                             border: InputBorder.none,
                           )),
                     ),
@@ -269,10 +274,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: language,
+                        controller: languagesData,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "Gujarati",
+                           // hintText: "Gujarati",
                             border: InputBorder.none,
                           )),
                     ),
@@ -306,10 +311,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: Currency,
+                        controller: currencyData,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 20,left: 15,bottom: 20), // add padding to adjust text
-                            hintText: "GBP",
+                           // hintText: "GBP",
                             border: InputBorder.none,
                           )),
                     ),
