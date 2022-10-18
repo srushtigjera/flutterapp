@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:practice_demo_cwic/Utils/app_colors.dart';
 import 'package:practice_demo_cwic/Utils/app_imges.dart';
 import 'package:practice_demo_cwic/Utils/app_routes.dart';
@@ -35,6 +36,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   bool students = false;
   Dio dio = Dio();
 
+  File? imageFile = null;
+  String? fileName;
+
    void getUserDetails() async {
      SharedPreferences pref = await SharedPreferences.getInstance() ;
      var userId = pref.getString('userId');
@@ -61,7 +65,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
        currencyData.text = userDetailsResponse['data']['currency'].toString() ;
        studentOrParentData = userDetailsResponse['data']['user_type'].toString() ;
        nameData.text = userDetailsResponse['data']['user_full_name'].toString() ;
-       img =userDetailsResponse['data']['user_profile'].toString() ;
+       fileName = userDetailsResponse['data']['user_profile'].toString() ;
+       citiesData = userDetailsResponse['data']['city_id'].toString() ;
+
        dateData.text = userDetailsResponse['data']['date_of_birth'].toString() ;
 
       if(studentOrParentData == 'Student'){
@@ -76,10 +82,45 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
            isStudents = false;
          });
        }
-       print(studentOrParentData);
+      // print(studentOrParentData);
      });
    }
 
+  void editUserDetails() async {
+    SharedPreferences pref = await SharedPreferences.getInstance() ;
+    var userId = pref.getString('userId');
+    var token = pref.getString('token');
+    var id = pref.getString('id');
+
+    var param = {
+      "user_type": studentOrParentData,
+      "date_of_birth": dateData.text,
+      "nationality": nationalityData.text,
+      "languages": languagesData.text,
+      "currency": currencyData.text,
+      "city_id": '9,10',
+      "user_profile": fileName,
+      "apiParameters":{
+        "user_id" : userId,
+        "id" : id,
+        "admin_id": null,
+        "agent_id": null,
+        "token": token
+      }
+    };
+    print(param);
+    var url = 'http://3.142.18.201/cwic/api/user/edit/user/details';
+    var userDetailsDatas = await dio.post(url , data: param ,options: Options(headers: {
+      'Authorization': 'Bearer $token',
+    }));
+
+    var userDetailsResponses = userDetailsDatas.data;
+    var userDetailsStatuss = userDetailsResponses["message"].toString();
+    //  var usersData = userDetailsResponse['data'].toString();
+
+    print(userDetailsResponses);
+
+  }
   @override
   void initState() {
     getUserDetails();
@@ -108,15 +149,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   Stack(
                     children: [
-                      CircleAvatar(
-                        radius: 60,
-                        child: ClipOval(
-                            child: Image.network(img,
-                              height: 120,
-                              width: 120,
-                              fit: BoxFit.cover,
-                            )
-                        ),
+                      InkWell(
+                        onTap: (){
+                          imagePickerDialog();
+                        },
+                        child: CircleAvatar(
+                            radius: 60,
+                            child: ClipOval(
+                                child:
+                                // Image.asset(AppImages.profileImage, height: 150, width: 150, fit: BoxFit.cover,),),
+                               imageFile != null
+                                    ? Image.file(
+                                  imageFile!,
+                                  height: 120,
+                                  width: 120,
+                                  fit: BoxFit.cover,
+                                )
+                                    : Image.network(
+                                 fileName!,
+                                  height: 120,
+                                  width: 120,
+                                  fit: BoxFit.cover,
+                                ) )),
                       ),
                       Positioned(
                         bottom: 1,
@@ -152,7 +206,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           onChanged: (data){
                             setState(() {
                               isParentOrGuardians = data!;
-                              print(isParentOrGuardians);
+                              isParentOrGuardians = true;
                               isStudents = false;
                             });
                           }),
@@ -171,8 +225,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             print (data);
                             setState(() {
                               isStudents = data!;
+                              isStudents = true;
                               isParentOrGuardians = false;
-                              print(isStudents);
                             });
                           }
                       ),
@@ -330,6 +384,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           buttonBorder: AppColors.greyBorder.withOpacity(0.2),
                           onPressed: (){
                             setState(() {
+                              editUserDetails();
+                              //getUserDetails();
                               // AppRoutes().nextScreen(context, LoginScreen());
                             });
                           }),
@@ -358,5 +414,117 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ),
     );
+  }
+  Future pickImage(ImageSource imageSource) async {
+    final pickImage = ImagePicker();
+    var imagePicked = await pickImage.pickImage(
+        source: imageSource, maxHeight: 200, maxWidth: 200);
+    if (imagePicked != null) {
+      setState(() {
+        // print(imagePicked);
+        imageFile = File(imagePicked.path);
+        fileName = (imageFile!.path);
+        print('imageFile == ${imageFile}');
+        print('fileName == ${fileName}');
+      });
+    } else {
+      print('No image selected!');
+    }
+  }
+  imagePickerDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(14.0))),
+            contentPadding: const EdgeInsets.only(top: 10.0),
+            content: Container(
+              width: 300.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "Choose profile",
+                      style: TextStyle(fontSize: 16,color: AppColors.blackColor),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  Divider(
+                    color: Colors.grey.withOpacity(0.2),
+                    height: 1.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          pickImage(ImageSource.gallery);
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                      5.0) //                 <--- border radius here
+                              ),
+                              border: Border.all(
+                                  color: AppColors.primary.withOpacity(0.4))),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.photo_library,
+                              color: AppColors.blackColor.withOpacity(0.6),
+                            ),
+                            onPressed: () {
+                              pickImage(ImageSource.gallery);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          pickImage(ImageSource.camera);
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                      5.0) //                 <--- border radius here
+                              ),
+                              border: Border.all(
+                                  color: AppColors.primary.withOpacity(0.4))),
+                          child: IconButton(
+                            icon: Icon(Icons.camera_alt_rounded,
+                                color: AppColors.blackColor.withOpacity(0.6)),
+                            onPressed: () {
+
+                              pickImage(ImageSource.camera);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

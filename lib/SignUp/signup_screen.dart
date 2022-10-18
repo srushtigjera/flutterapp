@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +36,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 @override
   void initState() {
-
     super.initState();
   }
 
@@ -401,7 +399,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               color: AppColors.blackColor.withOpacity(0.6),
                             ),
                             onPressed: () {
-
                               pickImage(ImageSource.gallery);
                               Navigator.of(context).pop();
                             },
